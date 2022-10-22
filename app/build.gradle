@@ -112,7 +112,17 @@ dependencies {
     //OpenCSV
     implementation 'com.opencsv:opencsv:5.5.2'
 
-    // Huawei Auth
+    //Huawei Auth
     implementation 'com.huawei.agconnect:agconnect-core:1.7.2.300'
     implementation 'com.huawei.agconnect:agconnect-auth:1.7.2.300'
+
+    //Huawei Analytics
+    implementation 'com.huawei.hms:hianalytics:6.8.0.300'
+
+    //Huawei Ads
+    implementation 'com.huawei.hms:ads-prime:3.4.56.302'
+    implementation 'com.huawei.hms:ads-omsdk:1.3.35'
+
+    //Huawei Cloud DB
+    implementation 'com.huawei.agconnect:agconnect-cloud-database:1.5.4.300'
 }
