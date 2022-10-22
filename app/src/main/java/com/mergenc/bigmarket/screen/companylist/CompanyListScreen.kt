@@ -15,23 +15,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.mergenc.bigmarket.domain.model.CompanyList
+import com.mergenc.bigmarket.screen.companyinfo.CompanyInfoScreen
+import com.mergenc.bigmarket.screen.destinations.CompanyInfoScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Preview
 @Composable
-fun ComposableListScreenPreview() {
-    // make string list
-    CompanyListScreen()
-}
-
-@Composable
-@Destination(start = true)
 fun CompanyListScreen(
-    //navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator,
+    navController: NavController,
     viewModel: CompanyListViewModel = hiltViewModel()
 ) {
     val refreshState = rememberSwipeRefreshState(isRefreshing = viewModel.state.isRefreshing)
@@ -71,14 +67,19 @@ fun CompanyListScreen(
                         val company = state.companies[index]
                         CompanyItem(
                             company = company,
-                            modifier = Modifier.padding(8.dp)
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .clickable {
+                                    navigator.navigate(
+                                        CompanyInfoScreenDestination(
+                                            symbol = company.symbol
+                                        )
+                                    )
+                                }
                         )
                         Divider(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .clickable {
-                                    // Navigate to company detail screen;
-                                }
                                 .padding(16.dp)
                         )
                     }
