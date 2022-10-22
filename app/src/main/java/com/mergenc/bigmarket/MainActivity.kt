@@ -6,38 +6,47 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.huawei.agconnect.auth.AGConnectAuth
+import com.huawei.hms.ads.HwAds
+import com.mergenc.bigmarket.screen.NavGraphs
 import com.mergenc.bigmarket.ui.theme.BigMarketTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        AGConnectAuth.getInstance().signOut()
+        HwAds.init(this)
+
         setContent {
             BigMarketTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.background,
+                    modifier = Modifier.fillMaxSize()
                 ) {
-                    Greeting("Android")
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    BigMarketTheme {
-        Greeting("Android")
+/*@Composable
+fun Navigation() {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "login_screen") {
+        /*composable("login_screen") {
+            LoginScreen(navController = navController, navigator = navigator)
+        }*/
+        composable("register_screen") {
+            RegisterScreen(navController = navController)
+        }
+        /*composable("company_list_screen") {
+            CompanyListScreen(navController = navController, navigator =)
+        }*/
     }
-}
+}*/
