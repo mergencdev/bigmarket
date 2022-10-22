@@ -1,6 +1,8 @@
 package com.mergenc.bigmarket.screen.registerhuaweiauth
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -10,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -25,9 +28,11 @@ import com.mergenc.bigmarket.common.CommonTextField
 import com.mergenc.bigmarket.ui.theme.PinkColor
 import com.mergenc.bigmarket.ui.theme.bigMarketGray
 import com.mergenc.bigmarket.ui.theme.bigMarketOrange
+import com.ramcosta.composedestinations.annotation.Destination
 import java.util.*
 
 @Composable
+@Destination
 fun RegisterScreen(navController: NavController) {
     var verifyCode by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -103,6 +108,8 @@ fun RegisterScreen(navController: NavController) {
                 }
             }
             Spacer(modifier = Modifier.height(24.dp))
+
+            val toastContext = LocalContext.current
             Button(
                 onClick = {
                     val settings = VerifyCodeSettings.newBuilder()
@@ -118,7 +125,7 @@ fun RegisterScreen(navController: NavController) {
                             Log.d("TAG", "requestVerifyCode:failure")
                         }
                     } else {
-                        println("Email bos olamaz.")
+                        makeToast(toastContext, "Please enter your email address")
                     }
 
                 },
@@ -177,4 +184,8 @@ fun RegisterScreen(navController: NavController) {
             }
         }
     }
+}
+
+private fun makeToast(context: Context, msg: String) {
+    Toast.makeText(context, "$msg", Toast.LENGTH_LONG).show()
 }
