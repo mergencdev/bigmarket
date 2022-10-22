@@ -20,7 +20,7 @@ private val LightColorPalette = lightColors(
     secondary = Teal200
 )
 
-@Composable
+/*@Composable
 fun BigMarketTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
 
     MaterialTheme(
@@ -29,10 +29,10 @@ fun BigMarketTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composa
         shapes = Shapes,
         content = content
     )
-}
+}*/
 
 @Composable
-fun LoginScreenUITheme(
+fun BigMarketTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit
 ) {
