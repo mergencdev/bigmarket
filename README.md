@@ -6,6 +6,8 @@ metrics, exchange rates to cryptocurrencies, fundamentals to technical
 indicators, Big Market is a mobile app for real-time and historical global 
 market data.
 
+***I developed the project based on clean architecture and with Jetpack Compose.***
+
 
 ## Authors & Acknowledgments
 
